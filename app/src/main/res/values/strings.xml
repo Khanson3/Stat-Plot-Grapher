@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Stat Plotter</string>
+
+    <string name="blank">\t\t\t\t</string>
+
+    <string-array name="plot_types">
+        <item>Scatter Plot</item>
+        <item>Box-and-Whisker Plot</item>
+    </string-array>
 </resources>
