@@ -8,3 +8,7 @@ Graphing app for Android that plots user inputted data
 
 **9/11**
 - Coded 'Enter" logic for EditTexts
+
+**9/14-9/15**
+- Fully functional data input screen
+- Passed data point list from data input page to scatter plot page and box-and-whisker plot page
