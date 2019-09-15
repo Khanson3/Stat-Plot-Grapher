@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
@@ -29,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/plotButton" />
 
     <Button
-        android:id="@+id/deleteDataButton"
+        android:id="@+id/deleteDataPointButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -38,6 +39,51 @@
         android:text="Delete Data Point"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addDataPointButton" />
+
+    <EditText
+        android:id="@+id/xAddTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:enabled="true"
+        android:imeOptions="actionNext"
+        android:inputType="numberSigned|numberDecimal"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/commaTextView1"
+        app:layout_constraintTop_toBottomOf="@+id/plotButton" />
+
+    <EditText
+        android:id="@+id/yAddTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:imeOptions="actionDone"
+        android:inputType="numberSigned|numberDecimal"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/rightParenthesisTextView1"
+        app:layout_constraintTop_toBottomOf="@+id/plotButton" />
+
+    <EditText
+        android:id="@+id/xDeleteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:imeOptions="actionNext"
+        android:inputType="numberSigned|numberDecimal"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/commaTextView2"
+        app:layout_constraintTop_toBottomOf="@+id/xAddTextView" />
+
+    <EditText
+        android:id="@+id/yDeleteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:imeOptions="actionDone"
+        android:inputType="numberSigned|numberDecimal"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/rightParenthesisTextView2"
+        app:layout_constraintTop_toBottomOf="@+id/yAddTextView" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +94,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteDataButton">
+        app:layout_constraintTop_toBottomOf="@+id/deleteDataPointButton">
 
         <TextView
             android:id="@+id/dataPointsTitleTextView"
@@ -83,18 +129,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appNameTextView" />
 
-    <EditText
-        android:id="@+id/xAddTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:enabled="true"
-        android:inputType="numberSigned|numberDecimal"
-        android:textSize="24sp"
-        android:imeOptions="actionNext"
-        app:layout_constraintEnd_toStartOf="@+id/commaTextView1"
-        app:layout_constraintTop_toBottomOf="@+id/plotButton" />
-
     <TextView
         android:id="@+id/commaTextView1"
         android:layout_width="wrap_content"
@@ -103,17 +137,6 @@
         android:text=", "
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/yAddTextView"
-        app:layout_constraintTop_toBottomOf="@+id/plotButton" />
-
-    <EditText
-        android:id="@+id/yAddTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:inputType="numberSigned|numberDecimal"
-        android:textSize="24sp"
-        android:imeOptions="actionDone"
-        app:layout_constraintEnd_toStartOf="@+id/rightParenthesisTextView1"
         app:layout_constraintTop_toBottomOf="@+id/plotButton" />
 
     <TextView
@@ -140,17 +163,6 @@
         app:layout_constraintEnd_toStartOf="@+id/addDataPointButton"
         app:layout_constraintTop_toBottomOf="@+id/plotButton" />
 
-    <EditText
-        android:id="@+id/xDeleteTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:inputType="numberSigned|numberDecimal"
-        android:textSize="24sp"
-        android:imeOptions="actionNext"
-        app:layout_constraintEnd_toStartOf="@+id/commaTextView2"
-        app:layout_constraintTop_toBottomOf="@+id/xAddTextView" />
-
     <TextView
         android:id="@+id/commaTextView2"
         android:layout_width="wrap_content"
@@ -160,17 +172,6 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/yDeleteTextView"
         app:layout_constraintTop_toBottomOf="@+id/commaTextView1" />
-
-    <EditText
-        android:id="@+id/yDeleteTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:inputType="numberSigned|numberDecimal"
-        android:textSize="24sp"
-        android:imeOptions="actionDone"
-        app:layout_constraintEnd_toStartOf="@+id/rightParenthesisTextView2"
-        app:layout_constraintTop_toBottomOf="@+id/yAddTextView" />
 
     <TextView
         android:id="@+id/leftParenthesisTextView2"
@@ -195,7 +196,7 @@
         android:layout_marginTop="32dp"
         android:text=")"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/deleteDataButton"
+        app:layout_constraintEnd_toStartOf="@+id/deleteDataPointButton"
         app:layout_constraintTop_toBottomOf="@+id/rightParenthesisTextView1" />
 
     <TextView
