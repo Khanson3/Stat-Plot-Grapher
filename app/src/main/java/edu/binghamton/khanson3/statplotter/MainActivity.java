@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         final Snackbar incompleteDataPointSnackbar = Snackbar.make(constraintLayout, "Data point is incomplete", Snackbar.LENGTH_LONG);
         final Snackbar dataPointAddedSnackbar = Snackbar.make(constraintLayout, "Data point has been added", Snackbar.LENGTH_LONG);
         final Snackbar dataPointDeletedSnackbar = Snackbar.make(constraintLayout, "Data point has been deleted", Snackbar.LENGTH_LONG);
+        final Snackbar dataPointNotFoundSnackbar = Snackbar.make(constraintLayout, "Data point not found", Snackbar.LENGTH_LONG);
 
         final List<List<Double>> dataPoints = new ArrayList<>();
 
@@ -111,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
                             xDeleteTextView.setText("");
                             yDeleteTextView.setText("");
+                        } else {
+                            dataPointNotFoundSnackbar.show();
                         }
                 } catch(NumberFormatException e) {
                     if(xDeleteTextView.getText().toString().equals("") || yDeleteTextView.getText().toString().equals(""))
@@ -134,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                         break;
                     case "Box-and-Whisker Plot":
                         Intent boxAndWhiskerPlotIntent = new Intent(getApplicationContext(), BoxAndWhiskerPlot.class);
+                        boxAndWhiskerPlotIntent.putExtra("DATA_POINTS", (Serializable) dataPoints);
                         startActivity(boxAndWhiskerPlotIntent);
                         break;
                 }
