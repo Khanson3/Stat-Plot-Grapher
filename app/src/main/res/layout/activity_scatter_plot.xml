@@ -21,7 +21,7 @@
             android:background="@color/colorPrimary">
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/yCoordinateEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="3"
@@ -30,7 +30,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/dataValueTextView"
+                app:layout_constraintStart_toEndOf="@+id/yCoordinateTextView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/dataTypeTextView"
+                android:id="@+id/xCoordinateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="56dp"
@@ -59,24 +59,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/dataValueTextView"
+                android:id="@+id/yCoordinateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=", Y: "
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editText"
+                app:layout_constraintStart_toEndOf="@+id/xCoordinateEditText"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/xCoordinateEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="3"
                 android:inputType="numberDecimal"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/dataTypeTextView"
+                app:layout_constraintStart_toEndOf="@+id/xCoordinateTextView"
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
@@ -84,7 +84,8 @@
             android:id="@+id/graphLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="521dp"
-            android:orientation="vertical"/>
+            android:background="@drawable/graph_paper_background"
+            android:orientation="vertical" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"

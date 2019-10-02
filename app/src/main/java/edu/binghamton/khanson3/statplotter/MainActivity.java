@@ -67,8 +67,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         final Snackbar dataPointAddedSnackbar = Snackbar.make(constraintLayout, "Data point has been added", Snackbar.LENGTH_LONG);
         final Snackbar dataPointDeletedSnackbar = Snackbar.make(constraintLayout, "Data point has been deleted", Snackbar.LENGTH_LONG);
         final Snackbar dataPointNotFoundSnackbar = Snackbar.make(constraintLayout, "Data point not found", Snackbar.LENGTH_LONG);
+        final Snackbar notANumberSnackbar = Snackbar.make(constraintLayout, "Invalid Data Point: Inputted data point is not a number", Snackbar.LENGTH_LONG);
+        final Snackbar noDataPointsSnackbar = Snackbar.make(constraintLayout, "Data points must be added in order to plot", Snackbar.LENGTH_LONG);
 
-        final List<List<Double>> dataPoints = new ArrayList<>();
+        final List<List<Float>> dataPoints = new ArrayList<>();
 
         final TextView dataPointsTextView = findViewById(R.id.dataPointsTextView);
 
@@ -79,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view) {
                 try {
-                    dataPoints.add(new ArrayList<>(Arrays.asList(Double.parseDouble(xAddTextView.getText().toString()), Double.parseDouble(yAddTextView.getText().toString()))));
-                    dataPointsTextView.append("(" + Double.parseDouble(xAddTextView.getText().toString()) + ", " + Double.parseDouble(yAddTextView.getText().toString()) + ")\n");
+                    dataPoints.add(new ArrayList<>(Arrays.asList(Float.parseFloat(xAddTextView.getText().toString()), Float.parseFloat(yAddTextView.getText().toString()))));
+                    dataPointsTextView.append("(" + Float.parseFloat(xAddTextView.getText().toString()) + ", " + Float.parseFloat(yAddTextView.getText().toString()) + ")\n");
 
                     dataPointAddedSnackbar.show();
 
@@ -89,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 } catch(NumberFormatException e) {
                     if(xAddTextView.getText().toString().equals("") || yAddTextView.getText().toString().equals(""))
                         incompleteDataPointSnackbar.show();
+                    else if(xAddTextView.getText().toString().equals(".") || xAddTextView.getText().toString().equals("-") || xAddTextView.getText().toString().equals("-.") || yAddTextView.getText().toString().equals(".") || yAddTextView.getText().toString().equals("-") || yAddTextView.getText().toString().equals("-."))
+                        notANumberSnackbar.show();
                     else
                         numberFormatExceptionSnackbar.show();
                 }
@@ -99,12 +103,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onClick(View view) {
                 try {
-                    List<Double> dataPoint = new ArrayList<>(Arrays.asList(Double.parseDouble(xDeleteTextView.getText().toString()), Double.parseDouble(yDeleteTextView.getText().toString())));
+                    List<Float> dataPoint = new ArrayList<>(Arrays.asList(Float.parseFloat(xDeleteTextView.getText().toString()), Float.parseFloat(yDeleteTextView.getText().toString())));
                         if(dataPoints.contains(dataPoint)) {
                             dataPoints.remove(dataPoint);
                             dataPointsTextView.setText("");
 
-                            for(List<Double> elem : dataPoints) {
+                            for(List<Float> elem : dataPoints) {
                                 dataPointsTextView.append("(" + elem.get(0).toString() + ", " + elem.get(1).toString() + ")\n");
                             }
 
@@ -112,9 +116,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
                             xDeleteTextView.setText("");
                             yDeleteTextView.setText("");
-                        } else {
+                        } else if(xDeleteTextView.getText().toString().equals(".") || xDeleteTextView.getText().toString().equals("-") || xDeleteTextView.getText().toString().equals("-.") || yDeleteTextView.getText().toString().equals(".") || yDeleteTextView.getText().toString().equals("-") || yDeleteTextView.getText().toString().equals("-."))
+                            notANumberSnackbar.show();
+                        else
                             dataPointNotFoundSnackbar.show();
-                        }
                 } catch(NumberFormatException e) {
                     if(xDeleteTextView.getText().toString().equals("") || yDeleteTextView.getText().toString().equals(""))
                         incompleteDataPointSnackbar.show();
@@ -129,6 +134,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         plotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(dataPoints.size() == 0) {
+                    noDataPointsSnackbar.show();
+                    return;
+                }
+
                 switch(plotTypeSpinner.getSelectedItem().toString()) {
                     case "Scatter Plot":
                         Intent scatterPlotIntent = new Intent(getApplicationContext(), ScatterPlot.class);

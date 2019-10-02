@@ -1,6 +1,5 @@
 package edu.binghamton.khanson3.statplotter;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,7 +14,7 @@ public class BoxAndWhiskerPlot extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_box_and_whisker_plot);
 
-        List<List<Double>> dataPoints = (List<List<Double>>) getIntent().getSerializableExtra("DATA_POINTS");
+        List<List<Float>> dataPoints = (List<List<Float>>) getIntent().getSerializableExtra("DATA_POINTS");
 
         Button backButton = findViewById(R.id.backButton);
 
